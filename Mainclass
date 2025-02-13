@@ -1,0 +1,64 @@
+package pizza_order;
+
+import java.util.Scanner;
+
+public class Customer {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int added=0;
+		OrderPlaced op=new OrderPlaced();
+		Pizza p=new Pizza();
+		boolean b=true;
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Welcome Pizza Hut");
+		System.out.println("Could you want see menu");
+		String ans=scan.next();
+		if(ans.equalsIgnoreCase("yes")) {
+			System.out.println("Available pizza today in menu");
+			System.out.println(p);
+			do {
+				System.out.println("You like to purchase Enter the Above Number");
+				int num=scan.nextInt();
+				System.out.println("would you like to purchse it");
+				String reply=scan.next();
+				if(reply.equalsIgnoreCase("yes")) {
+					System.out.println("Would you like to add extra cheese (Rs.30/-");
+					String ans1=scan.next();
+					if(ans1.equalsIgnoreCase("yes")) {
+						added=op.addCheese();
+					}
+					System.out.println("Would u like to add extra Toppings (Rs20");
+					String ans2=scan.next();
+					if(ans2.equalsIgnoreCase("yes")) {
+						added=op.addToppings();
+					}
+					System.out.println("Enter The Amount Avaliable");
+					double amt=scan.nextDouble();
+					amt=amt-added;
+					op.withdraw(num, amt);
+					b=false;
+					System.out.println("Thank you visit agains");
+				}
+				else {
+					System.out.println("Would like see menu again");
+					String as =scan.next();
+					if(as.equalsIgnoreCase("yes")) {
+						System.out.println(p);
+					}
+					else {
+						System.out.println("Thank you");
+						b=false;
+					}
+				}
+			}
+			while(b);
+			
+		}
+		else {
+			System.out.println("Thank you visit again");
+		}
+	}
+
+}
